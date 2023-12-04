@@ -28,8 +28,8 @@ update(time, delta) {
     if (this.player.x <= 0 || this.player.y <= 0) this.player_direction = 1;
         if(this.player_direction == 1){
             this.player.setVelocity(100, -100);
-            // this.player.angle += 5;
-            // this.player.setAngle( this.player.angle );
+            this.player.angle += 5;
+            this.player.setAngle( this.player.angle );
   // プレイヤーの向きフラグを変更
 //    if (this.player.x >= D_WIDTH - 100) this.player_direction = -1;
 //    if (this.player.x <= 100) this.player_direction = 1;
