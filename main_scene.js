@@ -7,7 +7,13 @@ class MainScene extends Phaser.Scene {
     preload() {
         this.load.image('sky', 'assets/background.png');
         this.load.image('alien', 'assets/taro.png');
-        this.load.image('jiro', 'assets/jiro.png')
+        this.load.image('jiro', 'assets/jiro.png');
+        this.keys = {};
+        this.keys.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+
+        this.keys.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+
+        this.keys.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
    }
    create() {
     // 単体画像をシーンに追加(X座標,Y座標,画像名)
@@ -18,6 +24,8 @@ class MainScene extends Phaser.Scene {
    this.player1 = player1;
    this.player.angle = 0;
    this.player_direction = 1;
+   this.text1 = this.add.text(600, 400 ,"My World").setFontSize(32);
+   this.text2 = this.add.text(100, 50 ,"").setFontSize(32);
 
    
    // MainSceneクラスのプロパティにplayerを設定
@@ -25,6 +33,15 @@ class MainScene extends Phaser.Scene {
 
 }
 
+wasd_move(keys){
+    if(keys.keyS.isDown){  //Sが押されている時
+        this.text2.setText("Hey!");
+    }else if(keys.keyA.isDown){  //Aが押されている時
+        this.text2.setText("Hello!");
+    }else if(keys.keyD.isDown){ //Dが押されている時
+        this.text2.setText("");
+    }
+}
 // 毎フレーム実行される繰り返し処理
 arrow_move(cursors, object){
     if(cursors.left.isDown){
@@ -53,6 +70,7 @@ update(time, delta) {
     let cursors = this.input.keyboard.createCursorKeys();
     this.arrow_move(cursors, this.player);
     this.arrow_move2(cursors, this.player1);
+    this.wasd_move(this.keys);
     // if (this.player.x <= 0 || this.player.y <= 0) this.player_direction = 1;
     //     if(this.player_direction == 1){
     //         this.player.setVelocity(100, -100);
