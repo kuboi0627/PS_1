@@ -42,6 +42,7 @@ class MainScene extends Phaser.Scene {
     this.text3 = this.add.text(100, 150 ,"痛い！").setFontSize(32);
     hanako.disableBody(false, true);
     this.countdounTimer = false;
+    this.physics.pause();
    }
 
    
