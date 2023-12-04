@@ -38,7 +38,7 @@ class MainScene extends Phaser.Scene {
    this.countdounTimer = true;
    this.hanakoGroup = this.physics.add.group();// 動く物体をまとめる
    this.physics.add.overlap(player, this.hanakoGroup, text_hanako, null, this);
-   function text_hanako(hanako){
+   function text_hanako(p,hanako){
     this.text3 = this.add.text(100, 150 ,"痛い！").setFontSize(32);
     hanako.disableBody(false, true);
     this.countdounTimer = false;
