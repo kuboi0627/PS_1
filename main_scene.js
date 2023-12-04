@@ -36,7 +36,13 @@ class MainScene extends Phaser.Scene {
    //文字列
    this._leftTimeText = this.add.text(300, 30, 'Time: ' + this._leftTime, { fontSize: '28px', fill: '#FFF' }); //時間表示
    this.countdounTimer = true;
-
+   this.hanakoGroup = this.physics.add.group();// 動く物体をまとめる
+   this.physics.add.overlap(player, this.hanakoGroup, text_hanako, null, this);
+   function text_hanako(hanako){
+    this.text3 = this.add.text(100, 150 ,"痛い！").setFontSize(32);
+    hanako.disableBody(false, true);
+    this.countdounTimer = false;
+   }
 
    
    // MainSceneクラスのプロパティにplayerを設定
@@ -81,8 +87,10 @@ class MainScene extends Phaser.Scene {
         }  
         let  randx = Phaser.Math.Between(200, 400) ;  // y は　50～750の間の値
         let  randy = Phaser.Math.Between(100, 200) ;
-        const hanako = this.add.image(randx, randy, 'hanako'); //ランダムな場所に生成
+        const hanako = this.hanakoGroup.create(randx, randy, 'hanako'); //ランダムな場所に生成
         this.hanako = hanako;
+        hanako._timeCounterb = 0;
+        hanako._leftTime = 3;
         return
     }
 wasd_move(keys){
