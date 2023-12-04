@@ -12,18 +12,25 @@ class MainScene extends Phaser.Scene {
     // 単体画像をシーンに追加(X座標,Y座標,画像名)
    this.add.image(400, 300, 'sky');
    const player = this.physics.add.sprite(500, 350, 'alien');
-   this.taro.angle = 0
+   this.player = player;
+   this.player.angle = 0;
+   this.player_direction = 1;
 
    
    // MainSceneクラスのプロパティにplayerを設定
-   this.player = player
+  
 
 }
 
 // 毎フレーム実行される繰り返し処理
 update(time, delta) {
     
-//   // プレイヤーの向きフラグを変更
+    if (this.player.x <= 0 || this.player.y <= 0) this.player_direction = 1;
+        if(this.player_direction == 1){
+            this.player.setVelocity(100, -100);
+            // this.player.angle += 5;
+            // this.player.setAngle( this.player.angle );
+  // プレイヤーの向きフラグを変更
 //    if (this.player.x >= D_WIDTH - 100) this.player_direction = -1;
 //    if (this.player.x <= 100) this.player_direction = 1;
 
@@ -38,5 +45,5 @@ update(time, delta) {
 //    }
 }
 
-
+}
 }
